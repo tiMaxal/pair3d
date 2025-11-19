@@ -1,0 +1,4 @@
+include README.md
+include pair3d.desktop
+include imgs/pair3d.png
+recursive-include imgs *.ico

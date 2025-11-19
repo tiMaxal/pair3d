@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pair3d - Stereo Image Sorter</title>
+    <style>
+        body {
+            background-color: lightcoral;
+            color: blue;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: lightcoral;
+            padding: 20px;
+        }
+        input[type="file"], button {
+            background: lightblue;
+            color: blue;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button {
+            margin: 5px;
+        }
+        #startButton { background: limegreen; }
+        #startButton:hover { background: green; }
+        #fileList, #results {
+            background: lightblue;
+            color: blue;
+            width: 100%;
+            height: 150px;
+            overflow-y: auto;
+            margin: 10px 0;
+            text-align: left;
+            padding: 5px;
+        }
+        #progress {
+            width: 100%;
+            height: 20px;
+            margin: 10px 0;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .options div {
+            flex: 1;
+            text-align: left;
+        }
+        .error, .log {
+            color: red;
+            font-weight: normal;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>pair3d - Stereo Image Sorter</h1>
+        <p>Select folder or ZIP containing images to sort:</p>
+        <input type="file" id="folderInput" accept=".zip" onchange="updateFileList()">
+        <p>Last folder: <span id="lastFolder">{{ last_folder }}</span></p>
+        <div class="options">
+            <div>
+                <label><input type="checkbox" id="processSubfolders"> Process subfolders</label><br>
+                <label><input type="checkbox" id="includeSingles"> Include '_singles' folders</label><br>
+                <label><input type="checkbox" id="moveToX2" onchange="updateRadioState()"> Move to '_x2_[folder]'</label>
+            </div>
+            <div>
+                <label><input type="radio" name="moveDestination" value="root" checked disabled> To root</label><br>
+                <label><input type="radio" name="moveDestination" value="subdirs" disabled> To subdir's</label>
+            </div>
+        </div>
+        <div>
+            <label>Time diff (s): <input type="number" id="timeDiff" value="2" min="0.01" step="0.01"></label>
+            <label>Hash diff: <input type="number" id="hashDiff" value="10" min="1" step="1"></label>
+        </div>
+        <p id="imageCount">No folder selected</p>
+        <div id="fileList"></div>
+        <div id="results"></div>
+        <progress id="progress" value="0" max="100"></progress>
+        <p>Elapsed: <span id="elapsed">0s</span> | Estimated remaining: <span id="remaining">--</span></p>
+        <p>Processed: <span id="processed">0</span> | Total: <span id="total">--</span></p>
+        <button id="startButton" onclick="startProcessing()">Start</button>
+        <p id="log" class="log"></p>
+        <p id="error" class="error"></p>
+    </div>
+    <script>
+        const socket = io();
+        let tempDir = '';
+
+        socket.on('progress', data => {
+            document.getElementById('progress').value = data.value;
+            document.getElementById('elapsed').textContent = `${data.elapsed}s`;
+            document.getElementById('remaining').textContent = data.remaining;
+            document.getElementById('processed').textContent = data.processed;
+            document.getElementById('total').textContent = data.total;
+        });
+
+        socket.on('results', data => {
+            const results = document.getElementById('results');
+            results.innerHTML = '';
+            if (data.pairs !== undefined) {
+                results.innerHTML += `Pairs moved: ${data.pairs}<br>`;
+                results.innerHTML += `Singles moved: ${data.singles}<br>`;
+            }
+            if (data.moved_to) {
+                results.innerHTML += `Moved to: ${data.moved_to}<br>`;
+                results.innerHTML += `Source renamed to: ${data.renamed_to}<br>`;
+            }
+        });
+
+        socket.on('file_list', data => {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = data.error || data.files.join('<br>');
+            document.getElementById('imageCount').textContent = data.error || `Total images found: ${data.total}`;
+        });
+
+        socket.on('log', msg => {
+            document.getElementById('log').textContent += msg;
+        });
+
+        socket.on('error', msg => {
+            document.getElementById('error').textContent = msg;
+        });
+
+        socket.on('download', data => {
+            const link = document.createElement('a');
+            link.href = data.url;
+            link.download = 'pair3d_output.zip';
+            link.click();
+        });
+
+        socket.on('confirm', data => {
+            if (confirm(data.message)) {
+                // Handle confirmation (requires server-side support)
+                alert('Confirmation not fully implemented in this demo.');
+            }
+        });
+
+        function updateFileList() {
+            const file = document.getElementById('folderInput').files[0];
+            if (file) {
+                tempDir = file.name; // Simplified for demo
+                socket.emit('list_files', {
+                    temp_dir: tempDir,
+                    process_subfolders: document.getElementById('processSubfolders').checked,
+                    include_singles: document.getElementById('includeSingles').checked
+                });
+            }
+        }
+
+        function updateRadioState() {
+            const moveToX2 = document.getElementById('moveToX2').checked;
+            const processSubfolders = document.getElementById('processSubfolders').checked;
+            const radios = document.getElementsByName('moveDestination');
+            radios.forEach(radio => radio.disabled = !(moveToX2 && processSubfolders));
+        }
+
+        function startProcessing() {
+            const file = document.getElementById('folderInput').files[0];
+            if (!file) {
+                alert('Please select a folder or ZIP file.');
+                return;
+            }
+            const formData = new FormData();
+            formData.append('folder', file);
+            formData.append('process_subfolders', document.getElementById('processSubfolders').checked ? '1' : '0');
+            formData.append('include_singles', document.getElementById('includeSingles').checked ? '1' : '0');
+            formData.append('move_to_x2', document.getElementById('moveToX2').checked ? '1' : '0');
+            formData.append('move_destination', document.querySelector('input[name="moveDestination"]:checked').value);
+            formData.append('time_diff', document.getElementById('timeDiff').value);
+            formData.append('hash_diff', document.getElementById('hashDiff').value);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json()).then(data => {
+                if (data.error) {
+                    document.getElementById('error').textContent = data.error;
+                } else {
+                    tempDir = data.temp_dir;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

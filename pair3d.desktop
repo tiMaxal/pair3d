@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.3.0
+Name=pair3d
+GenericName=Stereo Image Sorter
+Comment=Sort stereo image pairs using time and similarity
+Exec=pair3d
+Icon=pair3d
+Terminal=false
+Type=Application
+Categories=Graphics;Utility;

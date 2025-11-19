@@ -1,0 +1,97 @@
+name: Build and Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.3.0
+
+jobs:
+  build-wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install build
+      - run: python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels
+          path: dist/
+
+  build-exe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pillow imagehash
+      - run: pyinstaller --clean pairs3d.spec
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: dist/
+
+  build-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update
+          sudo apt-get install python3-stdeb fakeroot
+      - run: pip install pillow imagehash
+      - run: python3 setup.py --command-packages=stdeb.command bdist_deb
+      - uses: actions/upload-artifact@v4
+        with:
+          name: debian-package
+          path: deb_dist/*.deb
+
+  build-rpm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install rpm fakeroot -y
+
+      - name: Install Python dependencies
+        run: pip install setuptools pillow imagehash
+
+      - name: Build RPM
+        run: python3 setup.py bdist_rpm
+
+      - name: Upload RPM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpm-package
+          path: dist/*.rpm
+  
+  # macOS build job
+  build-macos: 
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pillow imagehash
+      - run: pyinstaller --clean pairs3d.spec
+      - name: Zip app bundle
+        run: |
+          cd dist
+          ditto -c -k --sequesterRsrc --keepParent pairs3d.app pairs3d-macos.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-app
+          path: dist/pairs3d-macos.zip

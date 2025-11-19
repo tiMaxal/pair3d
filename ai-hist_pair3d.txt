@@ -1,0 +1,15 @@
+
+
+
+integrate the essence of the mov3dpair app functionality into pair3d;
+provide checkbox activation to the right of the present 2 checkboxes, labelled `move to '_x2_[folder]'`;
+[move 'include singles' checkbox below 'process subfolders'];
+show 2 radio options associated to `move to ..`, in list format below the checkbox, greyed out until activated, and only made available then if 'process subfolders' is active - `to root` + `to subdir's`;
+process the moving *after* sorting is complete
+
+
+20250811
+
+recommend the most appropriate [free tier] ai model to create a video user guide \ walkthrough for pair3d app
+ [guidde.com]
+

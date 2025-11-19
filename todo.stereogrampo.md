@@ -1,0 +1,17 @@
+- give radio option for output folder, to be duplicate *tree* [without empty folders], or only dup root dir;
+- radio for all output formats in separate type-labelled dirs, or all together in one dir
+- [done] enable 'output mpo' as standalone action [not rely on another format being selected to activate];
+- when 'delete', checkbox for "move '_singles' up to parent" [and also perform delete for those empty dir's, incl. any .picasa.ini]
+- L/R needs to look in subfolders for L+R dirs
+- L/R needs to recognise names 'L' + 'r' [case insensitive], not just 'Left'+'Right'
+- check alignment issues
+- crop images to equal sizes after rotate-to-align, before output stereogram
+- provide mpo as input-type option
+- replace `__` with `_` in dir naming
+- i8n .. lang's 
+  - DE
+  - FR
+  - IT
+  - ES
+  - JP
+  - CH\ZH 

@@ -1,0 +1,21 @@
+{
+    "input_dir": "E:/images_stereo_bak/stereo_FASTRAK/_TEST3d/gomss150_to_Copy - Copy",
+    "output_dir": "E:/images_stereo_bak/stereo_FASTRAK/_TEST3d/3d2",
+    "include_subdirs": false,
+    "save_in_root": false,
+    "separate_formats": true,
+    "no_filename_change": false,
+    "formats": {
+        "anaglyph": false,
+        "crossview": false,
+        "parallel": true,
+        "lrl": true,
+        "left": true,
+        "right": false
+    },
+    "metadata": {
+        "exif": true,
+        "iptc": true,
+        "xmp": true
+    }
+}

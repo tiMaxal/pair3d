@@ -19,10 +19,10 @@ VSVersionInfo(
         StringStruct('CompanyName', 'tiMaxal'),
         StringStruct('FileDescription', 'Stereo Image Pair Sorter'),
         StringStruct('FileVersion', '1.3.0'),
-        StringStruct('InternalName', 'pairs3d'),
+        StringStruct('InternalName', 'pair3d'),
         StringStruct('LegalCopyright', 'MIT Copyright © 2025 tiMaxal. Licensed under the MIT License.'),
-        StringStruct('OriginalFilename', 'pairs3d.exe'),
-        StringStruct('ProductName', 'pairs3d Stereo Sorter'),
+        StringStruct('OriginalFilename', 'pair3d.exe'),
+        StringStruct('ProductName', 'pair3d Stereo Sorter'),
         StringStruct('ProductVersion', '1.3.0'),
         ])
       ]),

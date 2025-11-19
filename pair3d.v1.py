@@ -1,5 +1,5 @@
 """
-pairs3d.py
+pair3d.py
 
 A utility for sorting stereo image pairs in a folder.
 Pairs are detected based on file modification timestamps and perceptual image similarity.
@@ -184,7 +184,7 @@ def main():
     - A 'Close' button to exit the app, with alert warning tied to progress bar.
     """
     root = Tk()
-    root.title("pairs3d - Stereo Image Sorter")
+    root.title("pair3d - Stereo Image Sorter")
 
     # Store selected folder path using a mutable object, initialized from settings
     selected_folder = {"path": load_last_folder()}

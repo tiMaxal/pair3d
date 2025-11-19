@@ -1,0 +1,5 @@
+- [done] add cli
+- [done] add keyboard shortcuts
+- problem with 'start/pause/START/[un]pause'
+  - progress bar clears, than 'stutters'
+  - 'hangs' app at end if run completed

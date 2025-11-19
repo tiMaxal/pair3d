@@ -1,4 +1,4 @@
-# pairs3d.v1-3.py
+# pair3d.v1-3.py
 # Copyright (c) 2025 tiMaxal
 #
 # This software is released under the MIT License.
@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 """
-pairs3d
+pair3d
 
 A utility for sorting stereo image pairs in a folder.
 Pairs are detected based on file modification timestamps and perceptual image similarity.
@@ -228,7 +228,7 @@ def main():
     """
     root = Tk()
     root.resizable(True, True)
-    root.title("pairs3d - Stereo Image Sorter")
+    root.title("pair3d - Stereo Image Sorter")
 
     # Set app background color
     root.configure(bg="lightcoral")
@@ -255,13 +255,13 @@ def main():
     #root.maxsize(1200, 1600)
     
     # Set window title
-    root.title("pairs3d - Stereo Image Sorter")
+    root.title("pair3d - Stereo Image Sorter")
 
     # Set window background color
     root.configure(bg="lightcoral")
 
     # Set window icon if available
-    icon_path = os.path.join(os.path.dirname(__file__), "imgs/pairs3d.ico")
+    icon_path = os.path.join(os.path.dirname(__file__), "imgs/pair3d.ico")
     if os.path.exists(icon_path):
         root.iconbitmap(icon_path)
 

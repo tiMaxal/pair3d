@@ -1,0 +1,8 @@
+[2025-11-08 12:44:26] Processing from: E:/images/_bulk-sort/_PLACE/_x2__6stringer
+[2025-11-08 12:44:26] Duplicated tree will be at: E:/images/_bulk-sort/_PLACE\_x2__x2__6stringer
+[2025-11-08 12:44:26] Failed to rename source root to E:/images/_bulk-sort/_PLACE\_x2__6stringer_singles: [WinError 5] Access is denied: 'E:/images/_bulk-sort/_PLACE/_x2__6stringer' -> 'E:/images/_bulk-sort/_PLACE\\_x2__6stringer_singles'
+[2025-11-08 12:44:32] Done. Primary log saved at: E:\STORE\DOCS\text\code_text\ai-assist\[ai]pair3d\pair3d\mov3dpairs_log.txt, Source log saved at: E:/images/_bulk-sort/_PLACE\_x2__6stringer_singles/mov3dpairs_log.txt
+[2025-11-08 12:45:21] Processing from: E:/images/_bulk-sort/_PLACE/_x2__6stringer
+[2025-11-08 12:45:21] Duplicated tree will be at: E:/images/_bulk-sort/_PLACE\_x2__x2__6stringer
+[2025-11-08 12:45:21] Renamed source root: E:/images/_bulk-sort/_PLACE/_x2__6stringer → E:/images/_bulk-sort/_PLACE\_x2__6stringer_singles
+[2025-11-08 12:45:21] Done. Primary log saved at: E:\STORE\DOCS\text\code_text\ai-assist\[ai]pair3d\pair3d\mov3dpairs_log.txt, Source log saved at: E:/images/_bulk-sort/_PLACE\_x2__6stringer_singles/mov3dpairs_log.txt

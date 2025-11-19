@@ -1,0 +1,78 @@
+Filename - 20250706-085826.mpo
+Make - Google
+Model - Pixel 7a
+Orientation - Top left
+XResolution - 72
+YResolution - 72
+ResolutionUnit - Inch
+Software - HDR+ 1.0.773153310zd
+DateTime - 2025:07:06 08:58:23
+Artist - tiMaxal
+YCbCrPositioning - Co-Sited
+Copyright - Copyright 2025 by tiMaxal All Rights Reserved
+Exif-IFD-Offset - 300
+GPS-IFD-Offset - 1040
+ExposureTime - 1/25.0 seconds
+FNumber - 1.89
+ExposureProgram - Normal program
+ISOSpeedRatings - 486
+ExifVersion - 0232
+DateTimeOriginal - 2025:07:23 21:24:26
+DateTimeDigitized - 2025:07:06 08:58:23
+OffsetTime - +10:00
+OffsetTimeOriginal - +10:00
+OffsetTimeDigitized - +10:00
+ComponentsConfiguration - YCbCr
+ShutterSpeedValue - 1/25 seconds
+ApertureValue - F 1.89
+BrightnessValue - -0.80
+ExposureBiasValue - 0.00
+MaxApertureValue - F 1.89
+SubjectDistance - 1.28 m
+MeteringMode - Center weighted average
+Flash - Flash not fired, compulsory flash mode
+FocalLength - 5.43 mm
+SubsecTime - 824
+SubsecTimeOriginal - 824
+SubsecTimeDigitized - 824
+FlashPixVersion - 0100
+ColorSpace - sRGB
+ExifImageWidth - 4624
+ExifImageHeight - 3472
+InteroperabilityOffset - 1010
+SensingMethod - One-chip color area sensor
+SceneType - A directly photographed image
+CustomRendered - Custom process
+ExposureMode - Auto
+White Balance - Auto
+DigitalZoomRatio - 0 x
+FocalLengthIn35mmFilm - 51 mm
+SceneCaptureType - Standard
+Contrast - Normal
+Saturation - Normal
+Sharpness - Normal
+SubjectDistanceRange - Close view
+Lens Make - Google
+Lens Model - Pixel 7a back camera 5.43mm f/1.89
+
+GPS information: - 
+GPSVersionID - 2.2.0.0
+GPSLatitudeRef - S
+GPSLatitude - 24  52  39.200001 (24.877556)
+GPSLongitudeRef - E
+GPSLongitude - 152  19  39.779999 (152.327717)
+GPSAltitudeRef - Above Sea Level
+GPSAltitude - 66.69 m
+GPSTimeStamp - 22  56  38
+GPSImgDirectionRef - Magnetic direction
+GPSImgDirection - 307
+GPSDateStamp - 2025:07:05
+
+Thumbnail: - 
+Compression - 6 (JPG)
+Orientation - Top left
+XResolution - 72
+YResolution - 72
+ResolutionUnit - Inch
+JpegIFOffset - 1384
+JpegIFByteCount - 12418
